@@ -20,7 +20,8 @@ function start() {
         }
     }*/
 
-    else solve(sudoku, 0, 0);
+    else if (solve(sudoku, 0, 0)) { }
+    else alert("No solution exists");
 }
 
 function initialCheck(sudoku) {
@@ -28,7 +29,7 @@ function initialCheck(sudoku) {
         for (var j = 0; j < 9; j++) {
             if (sudoku[i][j] > 9 || sudoku[i][j] < 0) return false;
             if (sudoku[i][j]) {
-                
+
                 for (var k = 0; k < 9; k++) if (sudoku[i][j] == sudoku[k][j] && k != i) return false;
 
                 for (var k = 0; k < 9; k++) if (sudoku[i][j] == sudoku[i][k] && k != j) return false;
