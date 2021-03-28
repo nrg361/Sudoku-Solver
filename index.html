@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="btnn">
+        <button id="btns" onclick="game()">New game</button>
+    </div>
+
+    <div class="inl">
+        <p id="minu">30</p>
+        <p>:</p>
+        <p id="secs">00</p>
+    </div>
+
+
+    <div class="put">
+        <input type="number" id="00" value="0" max="9" min="0">
+        <input type="number" id="01" value="0" max="9" min="0">
+        <input type="number" id="02" value="0" max="9" min="0">
+        <input type="number" id="03" value="0" max="9" min="0">
+        <input type="number" id="04" value="0" max="9" min="0">
+        <input type="number" id="05" value="0" max="9" min="0">
+        <input type="number" id="06" value="0" max="9" min="0">
+        <input type="number" id="07" value="0" max="9" min="0">
+        <input type="number" id="08" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="10" value="0" max="9" min="0">
+        <input type="number" id="11" value="0" max="9" min="0">
+        <input type="number" id="12" value="0" max="9" min="0">
+        <input type="number" id="13" value="0" max="9" min="0">
+        <input type="number" id="14" value="0" max="9" min="0">
+        <input type="number" id="15" value="0" max="9" min="0">
+        <input type="number" id="16" value="0" max="9" min="0">
+        <input type="number" id="17" value="0" max="9" min="0">
+        <input type="number" id="18" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="20" value="0" max="9" min="0">
+        <input type="number" id="21" value="0" max="9" min="0">
+        <input type="number" id="22" value="0" max="9" min="0">
+        <input type="number" id="23" value="0" max="9" min="0">
+        <input type="number" id="24" value="0" max="9" min="0">
+        <input type="number" id="25" value="0" max="9" min="0">
+        <input type="number" id="26" value="0" max="9" min="0">
+        <input type="number" id="27" value="0" max="9" min="0">
+        <input type="number" id="28" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="30" value="0" max="9" min="0">
+        <input type="number" id="31" value="0" max="9" min="0">
+        <input type="number" id="32" value="0" max="9" min="0">
+        <input type="number" id="33" value="0" max="9" min="0">
+        <input type="number" id="34" value="0" max="9" min="0">
+        <input type="number" id="35" value="0" max="9" min="0">
+        <input type="number" id="36" value="0" max="9" min="0">
+        <input type="number" id="37" value="0" max="9" min="0">
+        <input type="number" id="38" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="40" value="0" max="9" min="0">
+        <input type="number" id="41" value="0" max="9" min="0">
+        <input type="number" id="42" value="0" max="9" min="0">
+        <input type="number" id="43" value="0" max="9" min="0">
+        <input type="number" id="44" value="0" max="9" min="0">
+        <input type="number" id="45" value="0" max="9" min="0">
+        <input type="number" id="46" value="0" max="9" min="0">
+        <input type="number" id="47" value="0" max="9" min="0">
+        <input type="number" id="48" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="50" value="0" max="9" min="0">
+        <input type="number" id="51" value="0" max="9" min="0">
+        <input type="number" id="52" value="0" max="9" min="0">
+        <input type="number" id="53" value="0" max="9" min="0">
+        <input type="number" id="54" value="0" max="9" min="0">
+        <input type="number" id="55" value="0" max="9" min="0">
+        <input type="number" id="56" value="0" max="9" min="0">
+        <input type="number" id="57" value="0" max="9" min="0">
+        <input type="number" id="58" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="60" value="0" max="9" min="0">
+        <input type="number" id="61" value="0" max="9" min="0">
+        <input type="number" id="62" value="0" max="9" min="0">
+        <input type="number" id="63" value="0" max="9" min="0">
+        <input type="number" id="64" value="0" max="9" min="0">
+        <input type="number" id="65" value="0" max="9" min="0">
+        <input type="number" id="66" value="0" max="9" min="0">
+        <input type="number" id="67" value="0" max="9" min="0">
+        <input type="number" id="68" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="70" value="0" max="9" min="0">
+        <input type="number" id="71" value="0" max="9" min="0">
+        <input type="number" id="72" value="0" max="9" min="0">
+        <input type="number" id="73" value="0" max="9" min="0">
+        <input type="number" id="74" value="0" max="9" min="0">
+        <input type="number" id="75" value="0" max="9" min="0">
+        <input type="number" id="76" value="0" max="9" min="0">
+        <input type="number" id="77" value="0" max="9" min="0">
+        <input type="number" id="78" value="0" max="9" min="0">
+        <br>
+        <input type="number" id="80" value="0" max="9" min="0">
+        <input type="number" id="81" value="0" max="9" min="0">
+        <input type="number" id="82" value="0" max="9" min="0">
+        <input type="number" id="83" value="0" max="9" min="0">
+        <input type="number" id="84" value="0" max="9" min="0">
+        <input type="number" id="85" value="0" max="9" min="0">
+        <input type="number" id="86" value="0" max="9" min="0">
+        <input type="number" id="87" value="0" max="9" min="0">
+        <input type="number" id="88" value="0" max="9" min="0">
+
+    </div>
+    <br>
+
+    <div class="btnn">
+        <button id="btn" onclick="start()">Solve this</button>
+        <button id="btn" onclick="submit()">Submit</button>
+    </div>
+
+    
+    <script src="logic.js"></script>
+</body>
+
+</html>
