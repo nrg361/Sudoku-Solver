@@ -5,14 +5,14 @@ input{
     font-size: x-large;
     margin-right: -5px;
     color: cyan;
+    text-align: center;
 }
 body{
     background-image: url("img.jpg");
 }
 .put{
-    align-items: center;
+    
     text-align: center;
-    padding-top: 125px;
 }
 #btn{
     background-color: rgb(48, 61, 61);
@@ -30,4 +30,35 @@ body{
 .btnn{
     align-items: center;
     text-align: center;
+}
+#btns{
+    background-color: rgb(48, 61, 61);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    font-size: medium;
+    color: cyan;
+    margin-top: 25px;
+}
+#btns:hover{
+    background-color: rgb(14, 112, 112);
+    cursor: pointer;
+}
+
+.inl{
+    display: inline-flex;
+    font-size: xx-large;
+    text-align: center;
+    margin-left: 720px;
+}
+
+@media (max-width: 750px){
+
+.inl{
+    display: inline-flex;
+    font-size: xx-large;
+    margin-left: 220px;
+}
+
 }
