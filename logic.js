@@ -18,12 +18,6 @@ function start() {
 
     if (!check) { alert("Give correct inputs"); }
 
-    /*for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
-            console.log(sudoku[i][j]);
-        }
-    }*/
-
     else if (solve(sudoku, 0, 0)) { }
     else alert("No solution exists");
 
@@ -149,7 +143,7 @@ function game() {
 
         var cnt = 0;
 
-        while (cnt < 15) {
+        while (cnt < 10) {
             var a = Math.floor((Math.random()) * 10);
             if (a == 9) a = 2;
             var b = Math.floor((Math.random()) * 10);
