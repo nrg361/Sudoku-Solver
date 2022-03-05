@@ -5,123 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku Solver</title>
+    <title>Wordle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="btnn">
-        <button id="btns" onclick="game()">New game</button>
+        <button id="btns" onclick="start()">New game</button>
     </div>
-
-    <div class="inl">
-        <p id="minu">30</p>
-        <p>:</p>
-        <p id="secs">00</p>
-    </div>
-
-
+    <br><br>
     <div class="put">
-        <input type="number" id="00" value="0" max="9" min="0">
-        <input type="number" id="01" value="0" max="9" min="0">
-        <input type="number" id="02" value="0" max="9" min="0">
-        <input type="number" id="03" value="0" max="9" min="0">
-        <input type="number" id="04" value="0" max="9" min="0">
-        <input type="number" id="05" value="0" max="9" min="0">
-        <input type="number" id="06" value="0" max="9" min="0">
-        <input type="number" id="07" value="0" max="9" min="0">
-        <input type="number" id="08" value="0" max="9" min="0">
+        <input type="text" id="00" maxlength="1" onkeydown="moves(this,'01','05')" oninput="move(this,'01','05')">
+        <input type="text" id="01" maxlength="1" onkeydown="moves(this,'02','00')" oninput="move(this,'02','00')">
+        <input type="text" id="02" maxlength="1" onkeydown="moves(this,'03','01')" oninput="move(this,'03','01')">
+        <input type="text" id="03" maxlength="1" onkeydown="moves(this,'04','02')" oninput="move(this,'04','02')">
+        <input type="text" id="04" maxlength="1" onkeydown="moves(this,'05','03')" oninput="move(this,'05','03')">
         <br>
-        <input type="number" id="10" value="0" max="9" min="0">
-        <input type="number" id="11" value="0" max="9" min="0">
-        <input type="number" id="12" value="0" max="9" min="0">
-        <input type="number" id="13" value="0" max="9" min="0">
-        <input type="number" id="14" value="0" max="9" min="0">
-        <input type="number" id="15" value="0" max="9" min="0">
-        <input type="number" id="16" value="0" max="9" min="0">
-        <input type="number" id="17" value="0" max="9" min="0">
-        <input type="number" id="18" value="0" max="9" min="0">
+        <input type="text" id="10" maxlength="1" onkeydown="moves(this,'11','15')" oninput="move(this,'11','15')">
+        <input type="text" id="11" maxlength="1" onkeydown="moves(this,'12','10')" oninput="move(this,'12','10')">
+        <input type="text" id="12" maxlength="1" onkeydown="moves(this,'13','11')" oninput="move(this,'13','11')">
+        <input type="text" id="13" maxlength="1" onkeydown="moves(this,'14','12')" oninput="move(this,'14','12')">
+        <input type="text" id="14" maxlength="1" onkeydown="moves(this,'15','13')" oninput="move(this,'15','13')">
         <br>
-        <input type="number" id="20" value="0" max="9" min="0">
-        <input type="number" id="21" value="0" max="9" min="0">
-        <input type="number" id="22" value="0" max="9" min="0">
-        <input type="number" id="23" value="0" max="9" min="0">
-        <input type="number" id="24" value="0" max="9" min="0">
-        <input type="number" id="25" value="0" max="9" min="0">
-        <input type="number" id="26" value="0" max="9" min="0">
-        <input type="number" id="27" value="0" max="9" min="0">
-        <input type="number" id="28" value="0" max="9" min="0">
+        <input type="text" id="20" maxlength="1" onkeydown="moves(this,'21','25')" oninput="move(this,'21','25')">
+        <input type="text" id="21" maxlength="1" onkeydown="moves(this,'22','20')" oninput="move(this,'22','20')">
+        <input type="text" id="22" maxlength="1" onkeydown="moves(this,'23','21')" oninput="move(this,'23','21')">
+        <input type="text" id="23" maxlength="1" onkeydown="moves(this,'24','22')" oninput="move(this,'24','22')">
+        <input type="text" id="24" maxlength="1" onkeydown="moves(this,'25','23')" oninput="move(this,'25','23')">
         <br>
-        <input type="number" id="30" value="0" max="9" min="0">
-        <input type="number" id="31" value="0" max="9" min="0">
-        <input type="number" id="32" value="0" max="9" min="0">
-        <input type="number" id="33" value="0" max="9" min="0">
-        <input type="number" id="34" value="0" max="9" min="0">
-        <input type="number" id="35" value="0" max="9" min="0">
-        <input type="number" id="36" value="0" max="9" min="0">
-        <input type="number" id="37" value="0" max="9" min="0">
-        <input type="number" id="38" value="0" max="9" min="0">
+        <input type="text" id="30" maxlength="1" onkeydown="moves(this,'31','35')" oninput="move(this,'31','35')">
+        <input type="text" id="31" maxlength="1" onkeydown="moves(this,'32','30')" oninput="move(this,'32','30')">
+        <input type="text" id="32" maxlength="1" onkeydown="moves(this,'33','31')" oninput="move(this,'33','31')">
+        <input type="text" id="33" maxlength="1" onkeydown="moves(this,'34','32')" oninput="move(this,'34','32')">
+        <input type="text" id="34" maxlength="1" onkeydown="moves(this,'35','33')" oninput="move(this,'35','33')">
         <br>
-        <input type="number" id="40" value="0" max="9" min="0">
-        <input type="number" id="41" value="0" max="9" min="0">
-        <input type="number" id="42" value="0" max="9" min="0">
-        <input type="number" id="43" value="0" max="9" min="0">
-        <input type="number" id="44" value="0" max="9" min="0">
-        <input type="number" id="45" value="0" max="9" min="0">
-        <input type="number" id="46" value="0" max="9" min="0">
-        <input type="number" id="47" value="0" max="9" min="0">
-        <input type="number" id="48" value="0" max="9" min="0">
+        <input type="text" id="40" maxlength="1" onkeydown="moves(this,'41','45')" oninput="move(this,'41','45')">
+        <input type="text" id="41" maxlength="1" onkeydown="moves(this,'42','40')" oninput="move(this,'42','40')">
+        <input type="text" id="42" maxlength="1" onkeydown="moves(this,'43','41')" oninput="move(this,'43','41')">
+        <input type="text" id="43" maxlength="1" onkeydown="moves(this,'44','42')" oninput="move(this,'44','42')">
+        <input type="text" id="44" maxlength="1" onkeydown="moves(this,'45','43')" oninput="move(this,'45','43')">
         <br>
-        <input type="number" id="50" value="0" max="9" min="0">
-        <input type="number" id="51" value="0" max="9" min="0">
-        <input type="number" id="52" value="0" max="9" min="0">
-        <input type="number" id="53" value="0" max="9" min="0">
-        <input type="number" id="54" value="0" max="9" min="0">
-        <input type="number" id="55" value="0" max="9" min="0">
-        <input type="number" id="56" value="0" max="9" min="0">
-        <input type="number" id="57" value="0" max="9" min="0">
-        <input type="number" id="58" value="0" max="9" min="0">
+        <input type="text" id="50" maxlength="1" onkeydown="moves(this,'51','55')" oninput="move(this,'51','55')">
+        <input type="text" id="51" maxlength="1" onkeydown="moves(this,'52','50')" oninput="move(this,'52','50')">
+        <input type="text" id="52" maxlength="1" onkeydown="moves(this,'53','51')" oninput="move(this,'53','51')">
+        <input type="text" id="53" maxlength="1" onkeydown="moves(this,'54','52')" oninput="move(this,'54','52')">
+        <input type="text" id="54" maxlength="1" onkeydown="moves(this,'55','53')" oninput="move(this,'55','53')">
         <br>
-        <input type="number" id="60" value="0" max="9" min="0">
-        <input type="number" id="61" value="0" max="9" min="0">
-        <input type="number" id="62" value="0" max="9" min="0">
-        <input type="number" id="63" value="0" max="9" min="0">
-        <input type="number" id="64" value="0" max="9" min="0">
-        <input type="number" id="65" value="0" max="9" min="0">
-        <input type="number" id="66" value="0" max="9" min="0">
-        <input type="number" id="67" value="0" max="9" min="0">
-        <input type="number" id="68" value="0" max="9" min="0">
-        <br>
-        <input type="number" id="70" value="0" max="9" min="0">
-        <input type="number" id="71" value="0" max="9" min="0">
-        <input type="number" id="72" value="0" max="9" min="0">
-        <input type="number" id="73" value="0" max="9" min="0">
-        <input type="number" id="74" value="0" max="9" min="0">
-        <input type="number" id="75" value="0" max="9" min="0">
-        <input type="number" id="76" value="0" max="9" min="0">
-        <input type="number" id="77" value="0" max="9" min="0">
-        <input type="number" id="78" value="0" max="9" min="0">
-        <br>
-        <input type="number" id="80" value="0" max="9" min="0">
-        <input type="number" id="81" value="0" max="9" min="0">
-        <input type="number" id="82" value="0" max="9" min="0">
-        <input type="number" id="83" value="0" max="9" min="0">
-        <input type="number" id="84" value="0" max="9" min="0">
-        <input type="number" id="85" value="0" max="9" min="0">
-        <input type="number" id="86" value="0" max="9" min="0">
-        <input type="number" id="87" value="0" max="9" min="0">
-        <input type="number" id="88" value="0" max="9" min="0">
 
     </div>
-    <br>
-
-    <div class="btnn">
-        <button id="btn" onclick="start()">Solve this</button>
-        <button id="btn" onclick="submit()">Submit</button>
-    </div>
-
-    
-    <script src="logic.js"></script>
 </body>
+<script src="app.js"></script>
 
 </html>
