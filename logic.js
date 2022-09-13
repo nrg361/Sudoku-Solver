@@ -2,7 +2,14 @@ var a = 1800;
 var times;
 var strt = false;
 
-function start() {
+const speed = 15;
+const delay = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(), speed);
+    });
+}
+
+async function start() {
     var sudoku = [[]];
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
@@ -14,16 +21,19 @@ function start() {
         sudoku.push([]);
     }
 
-    var check = initialCheck(sudoku);
+    const check = await initialCheck(sudoku);
 
     if (!check) { alert("Give correct inputs"); }
 
-    else if (solve(sudoku, 0, 0)) { }
-    else alert("No solution exists");
+    else {
+        const result = await solve(sudoku, 0, 0);
+        clearInterval(times);
+        if (!result) alert("No solution exists");
+    }
 
 }
 
-function initialCheck(sudoku) {
+async function initialCheck(sudoku) {
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
             if (sudoku[i][j] > 9 || sudoku[i][j] < 0) return false;
@@ -47,7 +57,7 @@ function initialCheck(sudoku) {
     return true;
 }
 
-function finalCheck(sudoku) {
+async function finalCheck(sudoku) {
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
             if (sudoku[i][j] > 9 || sudoku[i][j] < 1) return false;
@@ -70,9 +80,9 @@ function finalCheck(sudoku) {
     return true;
 }
 
-function solve(sudoku, row, col) {
+async function solve(sudoku, row, col) {
     if (row == 9) {
-        show(sudoku);
+        // show(sudoku);
         return true;
     }
     if (col == 9)
@@ -82,19 +92,23 @@ function solve(sudoku, row, col) {
         return solve(sudoku, row, col + 1);
 
     for (var i = 1; i < 10; i++) {
-        if (valid(sudoku, row, col, i)) {
+        const res = await valid(sudoku, row, col, i);
+        if (res) {
+            await delay();
+            document.getElementById(String(row) + String(col)).value = i;
             sudoku[row][col] = i;
-            //console.log(i);
-            var correct = solve(sudoku, row, col + 1);
+            const correct = await solve(sudoku, row, col + 1);
             if (correct)
                 return true;
+            await delay();
         }
     }
     sudoku[row][col] = 0;
+    document.getElementById(String(row) + String(col)).value = 0;
     return false;
 }
 
-function valid(sudoku, row, col, num) {
+async function valid(sudoku, row, col, num) {
 
     for (var i = 0; i < 9; i++) if (sudoku[row][i] == num) return false;
 
@@ -111,22 +125,7 @@ function valid(sudoku, row, col, num) {
     return true;
 }
 
-function show(sudoku) {
-
-    for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
-            document.getElementById(String(i) + String(j)).value = sudoku[i][j];
-        }
-    }
-
-    /*for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
-            console.log(sudoku[i][j]);
-        }
-    }*/
-}
-
-function game() {
+async function game() {
     if (strt == false) {
         times = setInterval(time, 1000);
         strt = true;
@@ -134,9 +133,7 @@ function game() {
         for (var i = 0; i < 9; i++) {
             for (var j = 0; j < 9; j++) {
                 const val = document.getElementById(String(i) + String(j)).value
-
                 sudoku[i].push(Number(val));
-
             }
             sudoku.push([]);
         }
@@ -151,7 +148,7 @@ function game() {
             var c = Math.floor((Math.random()) * 10);
             if (c == 0) c = 5;
 
-            if (sudoku[a][b] == 0 && valid(sudoku, a, b, c)) {
+            if (sudoku[a][b] == 0 && await valid(sudoku, a, b, c)) {
                 document.getElementById(String(a) + String(b)).value = c;
                 sudoku[a][b] = c;
                 cnt++;
@@ -159,7 +156,7 @@ function game() {
 
 
         }
-        
+
     }
     else {
         clear();
@@ -167,7 +164,7 @@ function game() {
 
 }
 
-function submit() {
+async function submit() {
     var sudoku = [[]];
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
@@ -188,7 +185,7 @@ function submit() {
 
 
 
-function time() {
+async function time() {
     a--;
     var b = Math.floor(a / 60);
     var c = a % 60;
@@ -206,7 +203,7 @@ function time() {
 
 }
 
-function clear() {
+async function clear() {
     strt = false;
     clearInterval(times);
     for (var i = 0; i < 9; i++)
